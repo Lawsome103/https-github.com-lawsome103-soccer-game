@@ -1,0 +1,21 @@
+{
+  "name": "soccer-game",
+  "version": "1.0.0",
+  "description": "A simple soccer game built with TypeScript.",
+  "main": "src/game.ts",
+  "scripts": {
+    "start": "tsc && node dist/game.js",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/soccer-game.git"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
