@@ -1,7 +1,9 @@
-export function displayScore(score: number): void {
+import { Player } from './player';
+
+export function displayScore(players: Player[]): void {
     const scoreElement = document.getElementById('score');
-    if (scoreElement) {
-        scoreElement.innerText = `Score: ${score}`;
+    if (scoreElement && players.length > 0) {
+        scoreElement.innerText = `Score - ${players[0].name}: ${players[0].score} | ${players[1]?.name || 'Player 2'}: ${players[1]?.score || 0}`;
     }
 }
 
@@ -13,7 +15,6 @@ export function showGameOver(winner: string): void {
     }
 }
 
-export function updateUI(playerScore: number, opponentScore: number): void {
-    displayScore(playerScore);
-    displayScore(opponentScore);
+export function updateUI(players: Player[]): void {
+    displayScore(players);
 }
