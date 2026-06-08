@@ -2,7 +2,7 @@ export class Field {
     width: number;
     height: number;
 
-    constructor(width: number, height: number) {
+    constructor(width: number = 800, height: number = 600) {
         this.width = width;
         this.height = height;
     }
@@ -11,11 +11,22 @@ export class Field {
         context.fillStyle = "green";
         context.fillRect(0, 0, this.width, this.height);
         context.strokeStyle = "white";
+        context.lineWidth = 2;
         context.strokeRect(0, 0, this.width, this.height);
-        // Additional field markings can be drawn here
+        
+        // Draw center line
+        context.beginPath();
+        context.moveTo(this.width / 2, 0);
+        context.lineTo(this.width / 2, this.height);
+        context.stroke();
+        
+        // Draw center circle
+        context.beginPath();
+        context.arc(this.width / 2, this.height / 2, 50, 0, Math.PI * 2);
+        context.stroke();
     }
 
-    checkGoal(ballPosition: { x: number; y: number }, goalWidth: number): boolean {
+    checkGoal(ballPosition: { x: number; y: number }, goalWidth: number = 100): boolean {
         const goalArea = {
             left: (this.width - goalWidth) / 2,
             right: (this.width + goalWidth) / 2,
