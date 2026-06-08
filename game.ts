@@ -8,12 +8,12 @@ import { displayScore, showGameOver } from './ui';
 const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-const field = new Field();
+const field = new Field(800, 600);
 const players: Player[] = [
-    new Player('Player 1', { x: 50, y: 100 }),
-    new Player('Player 2', { x: 150, y: 100 })
+    new Player('Player 1', { x: 100, y: 300 }),
+    new Player('Player 2', { x: 700, y: 300 })
 ];
-const ball = new Ball();
+const ball = new Ball(400, 300, 8);
 
 let gameRunning = true;
 
@@ -28,7 +28,12 @@ function gameLoop() {
 function update() {
     players.forEach(player => player.move());
     ball.move();
-    field.checkGoal(ball);
+    
+    // Check if goal is scored
+    if (field.checkGoal(ball.position, 100)) {
+        players[0].updateScore(1);
+        ball.resetPosition(400, 300);
+    }
 }
 
 function draw() {
@@ -45,7 +50,7 @@ function startGame() {
 
 function endGame() {
     gameRunning = false;
-    showGameOver();
+    showGameOver('Player 1');
 }
 
 // Start the game when the window loads
